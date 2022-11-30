@@ -9,22 +9,24 @@ body{
     background-image:url(thundergif.gif);
     background-size: cover;
     background-position: top center;
+    color: black;
 
 }
 
-.app-wrap{
+<!--.app-wrap{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6)),;
-}
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6)),; 
+} 
+
 
 header{
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 50px 15px 15px;
-    color: black;
+   
 }
 
 header input{
