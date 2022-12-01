@@ -1,7 +1,8 @@
-const api ={
-    key:"cfb7c1035e87a85901dfc28ab9bdf966",
-    baseurl:"http://api.openweathermap.org/data/2.5/forecast?q={city%20name}&appid=cfb7c1035e87a85901dfc28ab9bdf966 "
-}
+let value =""
+let api =`https://api.openweathermap.org/data/2.5/weather?q=${value},&=test&appid=cfb7c1035e87a85901dfc28ab9bdf966`
+    document.getElementById("CityInput").onchange=function(){
+        handleChange()
+    }
 
 const searchbox = document.querySelector('.search-box');
 searchbox.addEventListener('keypress', setQuery);
@@ -13,41 +14,48 @@ function setQuery(evt){
     }
 }
 
+function handleChange(e){
+    value=document.getElementById('CityInput').value
+}
+
 function getResults(query){
-    fetch('${api.base}weather?q=${query}&units=metric&APPID=${api.key}')
+    
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query},&=test&appid=cfb7c1035e87a85901dfc28ab9bdf966`)
     .then(weather => {
         return weather.json();
     }).then(displayResults);
 }
 
-function displayResults (query) {
-    let city = document.querySelector('.location .city');
-    city.innerText = '${weather.name}, ${weather.sys.country}';
+function displayResults (weather) {
+     let location = document.querySelector('.location');
+    let city = document.querySelector('.city');
+     city.innerText = `${weather.name}, ${weather.sys.country}`;
 
-    let now = new date();
-    let date = document.querySelector('.location .date');
-    date.innerText = dateBuilder(now);
+   let date = document.querySelector('.date ');
+   const now = new Date().toUTCString();
+    date.innerText =now;
 
-    let temp = document.querySelector('.current .temp');
-    temp.innerHTML = '${Math.round(weather.main.temp)}<span>°C</span>';
+    console.log(weather)
+    let temp = document.querySelector('.temp');
+    temp.innerHTML = `${Math.round(weather.main.temp)}<span>°C</span>`;
 
-    let weather_el= document.querySelector('.current .weather');
-    weather_el.innerText=weather.weather[0].main;
+     let weather_el= document.querySelector('.weather');
+     weather_el.innerText=weather.weather[0].main;
 
     let hilow =document.querySelector('.hi-low');
-    hilow.innerText='${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C';
+    hilow.innerText=`${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
 }
 
-function dateBuilder(d) {
-    let months = ["January", "February" , "March" , "April" , "May" , "June" , "July" , "August","September",
-    "October" , "November" , "December"];
+// function dateBuilder(d) {
+//     let months = ["January", "February" , "March" , "April" , "May" , "June" , "July" , "August","September",
+//     "October" , "November" , "December"];
 
-    let days = ["Sunday","Monday","Tuesday","Wednesday" , "Thursday","Friday", "Saturday"];
+//     let days = ["Sunday","Monday","Tuesday","Wednesday" , "Thursday","Friday", "Saturday"];
 
-    let day = days [d.getDay()];
-    let date = d.getDate();
-    let month = months[d.getMonth()];
-    let year = d.getFullYear();
+//     let day = days [d.getDay()];
+//     let date = d.getDate();
+//     let month = months[d.getMonth()];
+//     let year = d.getFullYear();
 
-    return '${day} ${date} ${month} ${year}';
-}
+//     return '${day} ${date} ${month} ${year}';
+// }
