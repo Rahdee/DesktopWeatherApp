@@ -46,7 +46,7 @@ header input{
 
 ::placeholder{
     color: black;
-    opacity: 80 %;
+    opacity: 85%;
 }
 
 header input:focus{
@@ -65,6 +65,7 @@ main{
 
 .location{
 color: whitesmoke;
+opacity: 100%;
 font-size: 32px;
 font-weight: 500;
 margin-bottom: 5px;
@@ -85,9 +86,12 @@ margin-bottom: 5px;
     text-shadow: 2px 10px rgba(0,0,0,0.6);
 }
 
+
 .temp span{
     font-weight: 500;
 }
+
+
 
 .weather{
     color: whitesmoke;
